@@ -1,8 +1,10 @@
-const cookieSession = require("cookie-session")
-const express = require("express")
-const cors = require("cors")
-const passport = require("passport")
-const app = express()
+const cookieSession = require("cookie-session");
+const express = require("express");
+const cors = require("cors");
+const passportSetup = require("./passport");
+const authRoute = require("./routes/auth");
+const passport = require("passport");
+const app = express();
 
 app.use(cookieSession(
     {
@@ -23,7 +25,7 @@ app.use(cors(
     }
 ));
 
-
+app.use("/auth", authRoute)
 
 app.listen("5000", () => {
     console.log("Server is runing")
